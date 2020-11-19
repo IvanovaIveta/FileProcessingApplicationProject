@@ -71,7 +71,7 @@ public class Swap {
         System.out.println("Enter the position of the first word:");
         while(true) {
             firstWordPosition = scan.nextInt()-1;
-            if(firstWordPosition>=0 && firstWordPosition<array2D.length){
+            if(firstWordPosition>=0 && firstWordPosition<array2D[firstWordLine].length){
                 break;
             }
             if(cnt==3){
@@ -95,7 +95,7 @@ public class Swap {
         System.out.println("Enter the position of the second word:");
         while(true){
             secondWordPosition = scan.nextInt()-1;
-            if (secondWordPosition >= 0 && secondWordPosition < array2D.length) {
+            if (secondWordPosition >= 0 && secondWordPosition < array2D[secondWordLine].length) {
                 break;
             }
             if (cnt == 3) {
