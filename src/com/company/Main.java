@@ -24,7 +24,7 @@ public class Main {
         }
 
         File file = new File(filename);
-        if(!file.exists()){
+        if(file.exists()==false){
             throw new FileNotFoundException("Error.File with this name/path does not exist.");
         }
         if(file.length()==0){
@@ -41,38 +41,47 @@ public class Main {
 
     }
 
-    public static void menu(Scanner scan, ArrayList<String> lines, String filename) throws IOException, TooManyAttemptsException{
-        while (true) {
-            System.out.println("\n               MENU                ");
-            System.out.println("1.Print the text from the file;");
-            System.out.println("2.Swap two lines(by index);");
-            System.out.println("3.Swap two words(by index);");
-            System.out.println("4.Exit.");
-            System.out.println("\nChoose an option(1-4):");
 
-            int choice = scan.nextInt();
-            switch (choice) {
-                case 1:
-                    Print.printLines(lines);
-                    break;
-                case 2:
-                    Swap.swapTwoLines(scan, lines, filename);
-                    break;
-                case 3:
-                    Swap.swapWords(scan, lines, filename);
-                    break;
-                case 4:
-                    System.exit(0);
-                default:
-                    System.out.println("This option does not exist. Please enter one of the existing!");
 
+    public static void menu(Scanner scan, ArrayList<String> lines, String filename) throws IOException, InputMismatchException {
+        try {
+            while (true) {
+                System.out.println("\n               MENU                ");
+                System.out.println("1.Print the text from the file;");
+                System.out.println("2.Swap two lines(by index);");
+                System.out.println("3.Swap two words(by index);");
+                System.out.println("4.Exit.");
+                System.out.println("\nChoose an option(1-4):");
+
+                int choice = scan.nextInt();
+                switch (choice) {
+                    case 1:
+                        Print.printLines(lines);
+                        break;
+                    case 2:
+                        Swap.swapTwoLines(scan, lines, filename);
+                        break;
+                    case 3:
+                        Swap.swapWords(scan, lines, filename);
+                        break;
+                    case 4:
+                        System.exit(0);
+                    default:
+                        System.out.println("This option does not exist. Please enter one of the existing!");
+
+                }
+                File file = new File(filename);
+                lines = new ArrayList<>();
+                Scanner in = new Scanner(file);
+                while (in.hasNextLine()) {
+                    lines.add(in.nextLine());
+                }
             }
-            File file = new File(filename);
-            lines = new ArrayList<>();
-            Scanner in = new Scanner(file);
-            while (in.hasNextLine()) {
-                lines.add(in.nextLine());
-            }
+        }catch (TooManyAttemptsException tooManyAttemptsException) {
+            System.out.println(tooManyAttemptsException.getMessage());
+        }catch (InputMismatchException inputMismatchException) {
+            System.out.println("Error. Expected value must contain only numbers.");
         }
     }
+
 }
