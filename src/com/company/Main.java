@@ -37,13 +37,13 @@ public class Main {
             lines.add(in.nextLine());
         }
 
-        menu(scan, lines, filename);
+        menu(scan, lines, filename, file);
 
     }
 
 
 
-    public static void menu(Scanner scan, ArrayList<String> lines, String filename) throws IOException, InputMismatchException {
+    public static void menu(Scanner scan, ArrayList<String> lines, String filename, File file) throws IOException, InputMismatchException {
         try {
             while (true) {
                 System.out.println("\n               MENU                ");
@@ -70,7 +70,6 @@ public class Main {
                         System.out.println("This option does not exist. Please enter one of the existing!");
 
                 }
-                File file = new File(filename);
                 lines = new ArrayList<>();
                 Scanner in = new Scanner(file);
                 while (in.hasNextLine()) {
