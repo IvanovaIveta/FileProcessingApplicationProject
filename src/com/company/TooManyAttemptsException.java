@@ -1,6 +1,5 @@
 package com.company;
 
-
 public class TooManyAttemptsException extends Exception{
 
     public TooManyAttemptsException(){
